@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<header th:insert="fragments/general.html :: header"> </header>
+
+<table class="center table1">
+    <tr>
+        <td><h2 class="hidden">    hidden2        </h2></td>
+    </tr>
+    <tr>
+        <td class="tdtitle" th:text="${thisAssignment.getAssign_date() + ' - ' + thisAssignment.getTitle()}"></td>
+    </tr>
+    <tr>
+        <td th:text="${thisAssignment.getRequirement()}"></td>
+    </tr>
+        <td>
+            <div th:if= "${thisAssignment.getHomeworks().size() != 0}">
+                <a th:href="@{/student/listMyAssignments/myHomeworks/{aid}(aid=${thisAssignment.id})}">Vezi tema incarcata</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div th:if= "${thisAssignment.getHomeworks().size() == 0}">
+            <form th:action="@{/student/listMyAssignments/addHomework}" th:object="${homework}" method="POST">
+                <input th:field="*{content}" type="text">
+                <input type="hidden" th:name="assigned.id" th:value="${thisAssignment.id}">
+                <input type="submit" value="Incarca tema">
+            </form>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

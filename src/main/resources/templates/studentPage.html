@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<header th:insert="fragments/general.html :: header"> </header>
+<p class="ptitle" th:text="${'Clasa ' + myCourses[0].getGroup().name}"></p>
+
+<div class="fluid">
+    <div class="row">
+        <div class="col-sm-10">
+
+<table class="table">
+    <tr th:each="enrolled : ${myCourses}">
+        <div class="gallery">
+            <a th:href="@{/student/myClasses/{eid}(eid=${enrolled.id})}">
+                <img th:src="'/images/' + ${enrolled.getSubject().image}"  th:width="600" th:height="100">
+            </a>
+            <div class="desc"> <p class="psubject" th:text="${enrolled.getSubject().name}"> </p></div>
+            <div class="desc"> <p class="pteacher" th:text="'Prof. ' + ${enrolled.getTeacher().name}"> </p> </div>
+        </div>
+    </tr>
+</table>
+        </div>
+
+        <div class="col-sm-2">
+            <p>
+                <a th:href="@{/student/myGroup}" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-education"></span> 1 A - Vezi clasa
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

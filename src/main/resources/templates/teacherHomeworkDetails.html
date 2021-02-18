@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="fragments/general.html :: header"> </header>
+
+<table class="center table3">
+    <tr>
+        <td th:text="${homework.getAssigned().getAssign_date()}"></td>
+        <td th:text="${homework.getAssigned().getTitle()}"></td>
+        <td th:text="${homework.getAssigned().getRequirement()}"></td>
+        </td>
+    </tr>
+</table>
+
+<table class="table">
+    <tr>
+        <td th:text="'Elev: ' + ${homework.getStudent().name}"></td>
+    </tr>
+    <tr>
+        <td th:text="'Raspuns: ' + ${homework.content}"></td>
+    </tr>
+
+    <tr>
+    <td>
+        <div th:if= "${homework.grade != null}">
+            <p th:text="'Nota: ' + ${homework.grade}">Nota</p>
+        </div>
+    </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div th:if= "${homework.grade == null}">
+            <form th:action="@{/teacher/myGroups/myAssignments/homework/addGrade}" method="POST">
+            <input type="text" name="gradeHomework">
+            <input type="hidden" name="homeworkID" th:value="${homework.id}">
+            <input type="submit" value="Adauga nota">
+            </form>
+            </div>
+        </td>
+    </tr>
+    </tr>
+</table>
+</body>
+</html>

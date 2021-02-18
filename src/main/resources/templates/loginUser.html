@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <meta charset="UTF-8">
+</head>
+<body class="b01">
+
+<h1 class="hidden">    hidden1        </h1>
+<h1 class="hidden">    hidden1        </h1>
+<h1 class="hidden">    hidden1        </h1>
+
+<h1>Autentificare</h1>
+
+<form th:action="@{/login}" method="post" modelAttribute="userInfo">
+    <div><label><h2> Nume utilizator : </h2><input type="text" name="username"/> </label></div>
+    <div><label><h2> Parola : </h2><input type="password" name="password"/> </label></div>
+    <h2 class="hidden">    hidden2        </h2>
+    <div><input type="submit" value="OK"/></div>
+</form>
+</body>
+</html>

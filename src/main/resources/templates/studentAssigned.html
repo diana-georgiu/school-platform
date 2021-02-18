@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="fragments/general.html :: header"> </header>
+
+<p class="ptitle" th:text="${myAssigned[0].getEnrolled().getSubject().name + ' - ' + myAssigned[0].getEnrolled().getGroup().name}"></p>
+<h3> Lista teme </h3>
+
+<table class="center table2">
+    <tr >
+        <th>Data</th>
+        <th>Titlu</th>
+        <th>Cerinta</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+
+    <tr th:each="assigned : ${myAssigned}">
+        <td th:text="${assigned.getAssign_date()}"></td>
+        <td th:text="${assigned.getTitle()}"></td>
+        <td><p th:text="${assigned.getRequirement()}" style="font-style:italic"></p></td>
+        <td><div id="di1" th:if= "${assigned.getHomeworks().size() != 0}"><p class="f1">Tema trimisa</p></div>
+            <div id="di2" th:if= "${assigned.getHomeworks().size() == 0}"><p class="f2">Tema netrimisa</p></div>
+        </td>
+        <td><a th:href="@{/student/myClasses/myAssignments/{aid}(aid=${assigned.id})}">Detalii</a></td>
+    </tr>
+</table>
+</body>
+</html>

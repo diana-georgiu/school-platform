@@ -1,0 +1,24 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="fragments/general.html :: header"> </header>
+
+<table class="center table1">
+    <tr>
+        <td class="tdtitle" th:text="${myEnrolled.getSubject().getName() + ' - ' + myEnrolled.getGroup().getName()}"></td>
+    </tr>
+    <tr>
+        <td><a th:href="@{/teacher/myGroups/mySubjects/{eid}(eid=${myEnrolled.id})}">Vezi lista teme</a></td>
+    </tr>
+    <tr>
+        <td><a th:href="@{/teacher/myGroups/catalog/{eid}(eid=${myEnrolled.id})}">Vezi catalog</a></td>
+    </tr>
+</table>
+</body>
+</html>

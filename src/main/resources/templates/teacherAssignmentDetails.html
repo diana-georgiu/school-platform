@@ -1,0 +1,32 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<header th:insert="fragments/general.html :: header"> </header>
+
+<table class="table3 center">
+    <tr>
+        <td><p th:text="${thisAssignment.getAssign_date()}" style="font-style: italic"></p></td>
+        <td><p th:text="${thisAssignment.getTitle()}" style="font-style: italic"></p></td>
+        <td><p th:text="${thisAssignment.getRequirement()}" style="font-style: italic"></p></td>
+    </tr>
+</table>
+
+<p class="ptitle">Lista teme predate</p>
+
+<table class="table2 center">
+    <tr th:each="homework : ${listHomeworks}">
+        <td th:text="${homework.getStudent().name}"></td>
+        <td><div id="di1" th:if= "${homework.getGrade() != null}"><p class="f1">Tema notata</p></div>
+            <div id="di2" th:if= "${homework.getGrade() == null}"><p class="f2">Tema nenotata</p></div>
+        </td>
+        <td><a th:href="@{/teacher/myGroups/myAssignments/homework/{hid}(hid=${homework.id})}">Detalii tema</a></td>
+    </tr>
+</table>
+</body>
+</html>

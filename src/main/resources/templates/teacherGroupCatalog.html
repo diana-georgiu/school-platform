@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<header th:insert="fragments/general.html :: header"> </header>
+
+<p class="ptitle" th:text="${'Catalog ' + myEnrolled.getSubject().name + ' - ' + myEnrolled.getGroup().name}"></p>
+
+<table class="center table4">
+
+    <tr class="tr1">
+        <th class="td1">Nume elev</th>
+        <th class="td1">Note</th>
+    </tr>
+    <tr class="tr1" th:each="instance : ${mapGrades}">
+        <td class="td1" th:text="${instance.key.name}"></td>
+        <td class="td1" th:text="${instance.value}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

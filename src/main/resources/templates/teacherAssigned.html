@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<header th:insert="fragments/general.html :: header"> </header>
+
+<p class="ptitle" th:text="${myAssigned[0].getEnrolled().getSubject().name + ' - ' + myAssigned[0].getEnrolled().getGroup().name}"></p>
+
+<table class="center table2">
+    <tr>
+        <th>Data</th>
+        <th>Titlu</th>
+        <th>Cerinta</th>
+        <th></th>
+    </tr>
+    <tr th:each="assigned : ${myAssigned}">
+        <td th:text="${assigned.getAssign_date()}"></td>
+        <td th:text="${assigned.getTitle()}"></td>
+        <td><p th:text="${assigned.getRequirement()}" style="font-style:italic"></p></td>
+        <td><a th:href="@{/teacher/myGroups/myAssignments/{aid}(aid=${assigned.id})}">Detalii</a></td>
+    </tr>
+</table>
+
+<table class="center">
+    <tr>
+        <td>
+            <form th:action="@{/teacher/myGroups/myAssignments/addAssig}" th:object="${assigned}" method="POST">
+                <input th:field="*{title}" type="text" placeholder="Titlu tema">
+                <input th:field="*{requirement}" type="text" placeholder="Cerinta tema">
+                <input th:type="hidden" th:name="enrolled.id" th:value="${myAssigned[0].getEnrolled().getId()}">
+                <input type="submit" value="Adaugare tema">
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

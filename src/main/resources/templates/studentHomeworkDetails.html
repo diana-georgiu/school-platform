@@ -1,0 +1,37 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EduKID</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styling.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="fragments/general.html :: header"> </header>
+
+<p class="ptitle">Tema mea</p>
+
+<table class="center table3">
+    <tr>
+        <td th:text="${thisHomework.getAssigned().assign_date}"></td>
+        <td th:text="${thisHomework.getAssigned().title}"></td>
+        <td th:text="${thisHomework.getAssigned().requirement}"></td>
+        </td>
+    </tr>
+</table>
+
+<table class="table">
+    <tr>
+        <td th:text="'Raspuns: ' + ${thisHomework.content}"></td>
+    </tr>
+
+    <tr>
+        <td>
+            <div th:if= "${thisHomework.getGrade() != null}">
+                <p th:text="'Nota: ' + ${thisHomework.getGrade()}">Nota</p>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
